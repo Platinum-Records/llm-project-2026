@@ -1,0 +1,13 @@
+﻿__pycache__/
+*.pyc
+.venv/
+.env
+.ipynb_checkpoints/
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+models/
+*.safetensors
+*.gguf
+qdrant_storage/

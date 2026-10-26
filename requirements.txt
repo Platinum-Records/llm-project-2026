@@ -1,0 +1,11 @@
+﻿qdrant-client
+sentence-transformers
+FlagEmbedding
+mcp
+transformers
+peft
+trl
+datasets
+bitsandbytes
+python-dotenv
+pytest
