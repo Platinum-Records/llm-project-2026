@@ -1,9 +1,8 @@
 """Clean raw JSONL fragments while retaining provenance and review status.
 
 Run from repository root:
-    python src/clean.py
-    python src/clean.py                       # Week 7 provisional sample (default)
-    python src/clean.py --approved-only       # approved records only
+    python src/ingestion/clean.py
+    python src/ingestion/clean.py --approved-only
 """
 import argparse
 import json
