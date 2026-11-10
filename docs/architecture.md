@@ -25,16 +25,80 @@ The system combines a small language model (SLM), retrieval-augmented generation
 
 ### 1.2 Data Sources and Intended Use
 
-The proposed data is divided into two groups:
+The proposed data is divided into four categories:
 
 | Data Category | Candidate Sources / Content | Intended Use |
 |---|---|---|
-| Folk material | Collections by Transylvanian collectors, including Pop-Reteganul; public-domain poetry candidates including Coșbuc, Blaga, and Goga | Regional knowledge base and style/context examples for RAG; selected material may support training where permitted |
+| Folk material | Transylvanian folk collections, including Pop-Reteganul and Jarník & Bârseanu; public-domain poetry candidates including Coșbuc, Blaga, and Goga | Regional knowledge base and style/context examples for RAG; selected material may support training where permitted |
 | Dialect knowledge | Dialect lexicons, idiom lists, dexonline and regional glossaries | Retrieval of regional words, meanings, and usage examples |
-| Rap material | Original lyrics written by the team or appropriately licensed open material | Rap examples and task-specific training data |
-| Instruction pairs | Prompt-to-poem and prompt-to-lyrics examples; synthetic examples reviewed by humans | Fine-tuning data |
+| Rap material | Original lyrics written by the team and AI-generated lyrics reviewed by humans | Rap examples and task-specific training data |
+| Instruction pairs | Prompt-to-poem and prompt-to-lyrics examples, including human-reviewed synthetic examples | Fine-tuning data |
 
-**Source and licensing validation:** The sources above are candidates identified in the project presentation. Before ingestion, the team will record the exact source URL, content type, license/rights status, approximate size, and whether the material can be used for retrieval, training, or both. No source will be treated as approved for training until its usage rights have been checked. Rap lyrics will be original or appropriately licensed; copyrighted lyrics will not be copied into the dataset.
+#### 1.2.1 Initial Dataset Source Inventory
+
+The following sources have been identified as candidates for the initial dataset. Their availability, initial licensing information, and intended use are recorded below.
+
+| Source | Data Type | Availability | Initial Licensing Status | Intended Use |
+|---|---|---|---|---|
+| *Doine și strigături din Ardeal* — Jarník & Bârseanu (1895) | Folk songs and traditional verses | PDF available through BCU Cluj | Public domain according to the library catalogue | Primary folk RAG corpus |
+| *Chiuituri de care strigă flăcăii la joc* — Ion Pop-Reteganul (1887) | Traditional verses and regional expressions | Listed on Wikisource; full-text availability to be checked | Original work is public domain; digital edition to be checked | Additional folk material |
+| George Coșbuc's poetry | Romanian poetry, rhyme and poetic structure | Online collections available | Original works are public domain; specific editions to be checked | Poetic structure and style examples |
+| dexonline | Regional vocabulary and definitions | Online dictionary | Automated extraction requires permission; individual dictionary rights vary | Dialect reference; RAG only if permitted |
+| Regional glossaries | Transylvanian words, idioms and expressions | Specific collections to be selected | Not yet verified | Dialect RAG corpus |
+| Team-written rap lyrics | Original rap verses | To be created by the team | Original team-owned material, subject to third-party rights | Fine-tuning |
+| AI-generated, human-reviewed examples | Folk and rap instruction pairs | To be generated and reviewed | Provider terms and originality to be checked | Fine-tuning |
+
+**Source references:**
+
+- Jarník & Bârseanu — *Doine și strigături din Ardeal*: https://dspace.bcucluj.ro/handle/123456789/78863
+- Ion Pop-Reteganul — Wikisource: https://ro.wikisource.org/wiki/Autor:Ion_Pop-Reteganul
+- George Coșbuc — Wikisource: https://ro.wikisource.org/wiki/Autor:George_Co%C8%99buc
+- dexonline: https://dexonline.ro
+- dexonline licensing information: https://radu.dexonline.ro/~radu/DEX/www/licenta
+
+The preferred initial folk source is *Doine și strigături din Ardeal*, because it contains authentic Transylvanian folk material and is available as a downloadable PDF with a public-domain designation.
+
+**Source and licensing validation:** Before ingestion, the team will record the exact source URL, content type, license/rights status, approximate size, and whether the material can be used for retrieval, training, or both. Sources with unclear licensing will not be included until their permitted uses have been confirmed.
+
+#### 1.2.2 Rap Dataset Strategy
+
+The proposed rap dataset will combine two types of material:
+
+1. **Original lyrics written by the team:** Romanian rap verses incorporating Transylvanian vocabulary, regional themes, and different rhyme patterns.
+2. **AI-generated lyrics reviewed by humans:** Synthetic examples generated from prompts specifying a theme, rhyme scheme, and regional vocabulary. These examples will be checked for language quality, coherence, and originality.
+
+The team will avoid copying commercially released rap lyrics without appropriate permission.
+
+Each fine-tuning example will contain a user prompt and a corresponding reviewed output, together with metadata such as mode, theme, rhyme scheme, source type, and review status.
+
+This strategy provides task-specific training examples while reducing copyright risks and allowing the team to control the quality of the data.
+
+The strategy is proposed for confirmation by the full team before dataset creation.
+
+#### 1.2.3 Initial Data Collection Plan
+
+The initial data collection will take place in Week 7, starting with a sample of approximately **50–100 text fragments**.
+
+The planned steps are:
+
+1. **Select suitable sources:** Prioritise public-domain folk collections and original team-written material. Use dialect resources only when the relevant permissions are confirmed.
+2. **Collect text fragments:** Extract representative folk stanzas, traditional expressions, regional vocabulary entries, and original rap verses.
+3. **Record source information:** Create `sources.csv` containing source identifiers, titles, URLs, licensing information, intended use, and collection notes.
+4. **Store raw data:** Save the collected material in `data/raw/`, preserving original text and source references.
+5. **Clean the dataset:** Implement `clean.py` to normalise Romanian diacritics, remove duplicates, and reject empty or invalid records.
+6. **Prepare structured data:** Save the cleaned fragments in `data/processed/chunks.jsonl`, using the metadata format defined in Section 1.3.
+7. **Validate the results:** Check text quality, regional relevance, and source traceability before the dataset is used by the RAG pipeline.
+
+The exact distribution of folk, dialect, and rap fragments will depend on source availability and licensing validation.
+
+**Expected Week 7 deliverables:**
+
+- `data/raw/` — initial collection of 50–100 text fragments.
+- `sources.csv` — source inventory and licensing information.
+- `clean.py` — text cleaning and duplicate removal script.
+- `data/processed/chunks.jsonl` — cleaned and structured dataset.
+
+The collection plan follows the cleaning and ingestion pipeline described in Sections 1.3 and 1.4.
 
 ### 1.3 Data Cleaning and Metadata
 
@@ -335,10 +399,10 @@ The main milestones are:
 
 ## 8. Open Decisions to Resolve
 
-The following points are intentionally left as decisions to validate rather than presented as completed work:
+The following points remain to be confirmed or validated as the project progresses:
 
-1. Exact URLs, licenses, and permitted uses for each selected data source.
-2. Final rap corpus choice: original team-written lyrics or appropriately licensed material.
+1. Final licensing verification and permitted uses for the candidate sources listed in Section 1.2.1.
+2. Team confirmation of the proposed rap dataset strategy: original team-written lyrics combined with AI-generated, human-reviewed examples.
 3. Exact SLM model IDs and versions after resource and license checks.
 4. Final embedding choice after the BGE-M3 versus multilingual-e5 retrieval experiment.
 5. Final RAG configuration after the planned retrieval experiments.
