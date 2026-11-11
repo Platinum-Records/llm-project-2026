@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "method": "Code cells executed sequentially in a fresh Python process (not a Jupyter kernel)",
+  "code_cells_executed": 23,
+  "elapsed_seconds": 253.92,
+  "offline_model_cache": true,
+  "utc": "2026-11-11T15:06:59.100757+00:00",
+  "input_sha256": "6b4c5de90d484aa0c8b47ac8d51058ee1ba48db496c73ef1fb46e1f264b26542",
+  "collections": {
+    "week7_bge_m3": 60,
+    "week7_multilingual_e5_base": 60
+  },
+  "mean_precision_at_5": {
+    "BGE-M3": 0.4,
+    "E5-base": 0.44000000000000006
+  }
+}

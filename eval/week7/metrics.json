@@ -1,0 +1,22 @@
+{
+  "BGE-M3": {
+    "precision_at_5_per_query": [
+      0.4,
+      0.2,
+      0.6,
+      0.4,
+      0.4
+    ],
+    "mean_precision_at_5": 0.4
+  },
+  "E5-base": {
+    "precision_at_5_per_query": [
+      0.8,
+      0.2,
+      0.4,
+      0.4,
+      0.4
+    ],
+    "mean_precision_at_5": 0.44000000000000006
+  }
+}
