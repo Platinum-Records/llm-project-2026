@@ -30,6 +30,27 @@ Check that the Golden Dataset is well-formed and that its chunk references exist
 
     python eval/validate_golden.py
 
+## Week 7 MCP syllable counter
+
+From the repository root, install the MCP and test dependencies and run the tests:
+
+```sh
+python -m pip install "mcp>=2.2,<3" pytest
+python -m pytest -q
+```
+
+Configure an MCP client to launch `python -m mcp_server.server` from the
+repository root using stdio. The read-only `syllable_counter` tool takes a
+`text` string and returns one record per line, including blank lines. For
+example, `{"text":"Pomi\nUn râu"}` returns counts of 1 and 2, with each
+line's original text and 1-based line number. Digits and punctuation do not
+contribute syllables.
+
+The counter estimates standard Romanian pronunciation using spelling rules and
+a small set of exceptions. The same written vowel sequence can represent a
+diphthong or hiatus ([DOOM 3 pronunciation guidance](https://doom.lingv.ro/studiu_introductiv/reguli_scriere_pronuntare)),
+so dialect, loanwords, and poetic or performed elisions may need manual review.
+
 ## Week 7 RAG prototype
 
 - [Windows setup and execution](docs/week7-rag-setup.md)
