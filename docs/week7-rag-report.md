@@ -13,7 +13,7 @@ Run an exploratory comparison with multilingual-e5.
 - Persistent Docker volume: llm-qdrant-storage
 - Notebook: notebooks/week7_rag_retrieval.ipynb
 - Dataset: data/processed/chunks.jsonl
-- Corpus: 60 provisional fragments, 40 folk and 20 rap.
+- Corpus: 60 provisional fragments, 40 folk and 20 rap (the original Week 7 sample; the notebook filters to these IDs, so later additions such as `rap-original-021` are not part of E1).
 - Metadata, including source and approval status, is preserved.
 - Inference runs on CPU.
 
