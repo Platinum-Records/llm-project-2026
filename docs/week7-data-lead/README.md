@@ -2,10 +2,10 @@
 
 ## Overview
 
-This deliverable contains **60 candidate text fragments** for the Transylvanian Folk & Rap Dual-Mode Creative Agent:
+This deliverable contains **61 candidate text fragments** for the Transylvanian Folk & Rap Dual-Mode Creative Agent:
 
 - **40 folk fragments** transcribed from historical Transylvanian folk poetry.
-- **20 AI-assisted rap drafts** prepared for initial experimentation.
+- **21 AI-assisted rap drafts** prepared for initial experimentation (`rap-original-021` was added by the Evaluation Lead to cover golden item g-021).
 
 The dataset is intended for Week 7 RAG and embedding experiments. All records are provisional and have not received final editorial or licensing approval.
 
@@ -14,8 +14,8 @@ The dataset is intended for Week 7 RAG and embedding experiments. All records ar
 | File | Description |
 |---|---|
 | `data/raw/folk_first_pass.jsonl` | 40 folk candidates with source and page provenance |
-| `data/raw/rap_original_revised.jsonl` | 20 revised AI-assisted rap candidates |
-| `data/processed/chunks.jsonl` | 60 normalized and deduplicated provisional records |
+| `data/raw/rap_original_revised.jsonl` | 21 revised AI-assisted rap candidates |
+| `data/processed/chunks.jsonl` | 61 normalized and deduplicated provisional records |
 | `sources.csv` | Source inventory, provenance and licensing information |
 | `src/ingestion/clean.py` | Text normalization, validation, exact deduplication and approval filtering |
 
@@ -40,7 +40,7 @@ Run the following command from the repository root:
 python src/ingestion/clean.py
 ```
 
-This generates `data/processed/chunks.jsonl` with the 60 provisional records for initial RAG testing.
+This generates `data/processed/chunks.jsonl` with the 61 provisional records for initial RAG testing.
 
 To generate an approved-only dataset:
 
@@ -52,7 +52,7 @@ Currently, the approved-only output contains zero records because no candidate h
 
 ## Dataset Status and Licensing
 
-All 60 records have the status:
+All 61 records have the status:
 
 `dataset_status: provisional_unapproved`
 
@@ -77,8 +77,8 @@ The initial dataset contains folk and rap fragments only.
 | Check | Result |
 |---|---|
 | Folk fragments | 40 |
-| Rap fragments | 20 |
-| Total processed fragments | 60 |
+| Rap fragments | 21 |
+| Total processed fragments | 61 |
 | Exact duplicates | 0 |
 | Invalid records | 0 |
 | Approved records | 0 |

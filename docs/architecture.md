@@ -56,6 +56,8 @@ The following sources have been identified as candidates for the initial dataset
 - dexonline: https://dexonline.ro
 - dexonline licensing information: https://radu.dexonline.ro/~radu/DEX/www/licenta
 
+**Week 7 status:** the initial sample (60 provisional records) uses only Jarník & Bârseanu (folk) and team rap drafts. dexonline extraction was excluded pending permission, and dialect dictionaries/regional glossaries were deferred until their reuse conditions are verified (see `docs/week7-data-lead/README.md`).
+
 The preferred initial folk source is *Doine și strigături din Ardeal*, because it contains authentic Transylvanian folk material and is available as a downloadable PDF with a public-domain designation.
 
 **Source and licensing validation:** Before ingestion, the team will record the exact source URL, content type, license/rights status, approximate size, and whether the material can be used for retrieval, training, or both. Sources with unclear licensing will not be included until their permitted uses have been confirmed.
@@ -176,19 +178,28 @@ The planned distribution is:
 
 ```json
 {
-  "id": "g-017",
+  "id": "g-003",
   "task": "generation",
   "mode": "folk",
-  "prompt": "poezie despre mama care coace pâine",
+  "prompt": "Scrie o poezie populară despre mama care coace pâine.",
+  "prompt_en": "Write a folk verse about a mother baking bread.",
+  "expected_answer": null,
+  "expected_answer_en": null,
+  "expected_chunks": [],
   "constraints": {
+    "lines": 4,
+    "syllables": {"min": 7, "max": 8},
     "scheme": "ABAB",
-    "syllables": 8,
+    "theme": "mother baking bread",
     "dialect_terms_min": 2
   },
-  "expected_chunks": ["folk-231"],
-  "reference": "(reference verse written and reviewed by the team)"
+  "reference": null,
+  "status": "draft",
+  "notes": null
 }
 ```
+
+Prompts are written in Romanian (the system's input language); English versions are kept in `prompt_en` for reviewers. `expected_chunks` refer to record IDs in `data/processed/chunks.jsonl` (e.g. `folk-jb1895-001`, `rap-original-001`). The full field description is maintained in `data/eval/README.md`.
 
 For open-ended generation, the reference is not intended to be the only acceptable output. The constraints and evaluation rubric will also be used to assess generated responses.
 
