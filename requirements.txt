@@ -1,7 +1,7 @@
 ﻿qdrant-client
 sentence-transformers
 FlagEmbedding
-mcp
+mcp>=2.2,<3
 transformers
 peft
 trl
