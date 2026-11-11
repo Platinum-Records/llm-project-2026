@@ -64,7 +64,7 @@ The notebook already contains the successful download and local-loading sequence
 Model revisions are fixed; completed downloads are reused from the Hugging Face cache.
 Do not delete cached models between runs.
 
-Expected checks:
+Expected checks (`chunks.jsonl` now has 61 records; the notebook keeps the original 60 used for E1):
 - 60 input fragments
 - BGE-M3 embeddings: (60, 1024)
 - E5-base embeddings: (60, 768)
