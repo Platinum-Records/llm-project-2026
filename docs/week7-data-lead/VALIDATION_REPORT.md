@@ -1,6 +1,6 @@
 # Week 7 validation — 2026-11-09
 
-Default command: `python src/clean.py`
+Default command: `python src/ingestion/clean.py`
 
 ```json
 {
@@ -12,7 +12,7 @@ Default command: `python src/clean.py`
 }
 ```
 
-Approved-only test: `python src/clean.py --approved-only --output data/processed/chunks_approved_test.jsonl`
+Approved-only test: `python src/ingestion/clean.py --approved-only --output data/processed/chunks_approved_test.jsonl`
 
 ```json
 {
