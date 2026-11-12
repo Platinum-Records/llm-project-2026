@@ -1,0 +1,16 @@
+{
+  "python": "3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]",
+  "packages": {
+    "qdrant-client": "1.20.0",
+    "sentence-transformers": "6.2.0",
+    "transformers": "5.22.2",
+    "huggingface-hub": "2.4.0",
+    "torch": "2.15.0",
+    "ipykernel": "7.4.0",
+    "tqdm": "4.70.1"
+  },
+  "model_revisions": {
+    "BAAI/bge-m3": "5617a9f61b028005a4858fdac845db406aefb181",
+    "intfloat/multilingual-e5-base": "d128750597153bb5987e10b1c3493a34e5a4502a"
+  }
+}

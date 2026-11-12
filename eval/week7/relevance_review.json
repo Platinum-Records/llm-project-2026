@@ -1,0 +1,54 @@
+{
+  "status": "preliminary_pending_team_review",
+  "method": "Manual relevance assessment of the top 5 results",
+  "limitations": [
+    "Only 5 exploratory queries",
+    "Labels assigned after inspecting retrieval results",
+    "Team review required"
+  ],
+  "queries": [
+    {
+      "query": "suferință din iubire și dor",
+      "criterion": "Explicit romantic suffering or longing",
+      "relevant_ids": [
+        "folk-jb1895-008",
+        "folk-jb1895-004",
+        "folk-jb1895-012",
+        "folk-jb1895-001"
+      ]
+    },
+    {
+      "query": "mama și familia",
+      "criterion": "Explicit mother, relatives or family formation",
+      "relevant_ids": [
+        "folk-jb1895-002",
+        "folk-jb1895-009"
+      ]
+    },
+    {
+      "query": "viața la sat și munca",
+      "criterion": "Rural life or work as a substantive theme",
+      "relevant_ids": [
+        "rap-original-009",
+        "folk-jb1895-024",
+        "rap-original-010"
+      ]
+    },
+    {
+      "query": "muzică, scenă și emoțiile artistului",
+      "criterion": "Artistic performance and associated emotions",
+      "relevant_ids": [
+        "rap-original-018",
+        "rap-original-014"
+      ]
+    },
+    {
+      "query": "dragoste care nu mă lasă să dorm",
+      "criterion": "Explicit sleeplessness caused by romantic love",
+      "relevant_ids": [
+        "folk-jb1895-008",
+        "folk-jb1895-012"
+      ]
+    }
+  ]
+}
