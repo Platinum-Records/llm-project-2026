@@ -347,19 +347,25 @@ The project compares three system configurations:
 
 ### 5.1 Candidate Models
 
-The current candidates identified by the team are Qwen, Gemma, and RoLlama in the 3–4B class where suitable variants are available.
+The fine-tuning lead checked model availability, license notes, and the available Colab runtime on 2026-11-10. The candidate shortlist is:
 
-The exact model IDs and versions will be fixed after checking:
-- Model availability.
-- License terms.
-- Hardware requirements.
-- Comparison on the same prompts.
+| Model ID | Role in the comparison | Rationale and constraints |
+|---|---|---|
+| [`Qwen/Qwen3-4B-Instruct-2507`](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507) | Primary candidate for the first fine-tuning experiment | 4B instruction-tuned model; its model card reports improvements in instruction following, multilingual coverage, and tool usage. The model card lists Apache-2.0. The Qwen3-2507 4B Instruct variant has a documented Unsloth training notebook. |
+| [`google/gemma-3-4b-it`](https://huggingface.co/google/gemma-3-4b-it) | Comparable 4B alternative | Instruction-tuned 4B alternative. Gemma uses Google's model terms; check access and terms before downloading or training. Validate T4 memory use in the selected training stack before choosing it. |
+| [`OpenLLM-Ro/RoLlama-3.2-1B`](https://huggingface.co/OpenLLM-Ro/RoLlama-3.2-1B) | Romanian-focused reference candidate | Romanian/English model and only 1B parameters, so it is a smaller, non-like-for-like reference rather than a 3–4B instruction-model competitor. Its model card describes it as a base model for further fine-tuning and lists the Llama 3.2 Community License. |
+
+Working recommendation: use Qwen3-4B-Instruct-2507 for the first QLoRA experiment, subject to a short Colab memory check. Compare the untuned and tuned versions of this same checkpoint on the same development prompts. The other models remain comparison candidates; the final choice should reflect the shared-prompt results and license review.
+
+The fine-tuning lead also has a local `Qwen3.5-9B` Q4_K_M GGUF copy. It can serve as an additional inference reference. It is 9B, exceeds the planned 3–4B comparison size, and is not the selected Transformers-format training checkpoint.
 
 The commercial model is an evaluation baseline, not the intended final system.
 
 ### 5.2 Fine-tuning Approach
 
-The planned approach is QLoRA with 4-bit quantisation and rank `r=16`, trained using Colab or another available GPU environment.
+The planned approach is QLoRA with 4-bit quantisation and rank `r=16`, trained using Colab or another available GPU environment. The available runtime was checked in Google Colab on 2026-11-10: NVIDIA Tesla T4, 15,360 MiB reported GPU memory, CUDA 13.0. Colab hardware availability can change; record the actual GPU for each run. The T4 check confirms access to an accelerator, while model fit and run time remain to be verified with the selected checkpoint and training settings.
+
+Load the selected model from its Transformers-format checkpoint in the Colab runtime. Keep the training data separate from the locked evaluation split, and only use instruction pairs that the Data Lead has approved for training. The current Week 7 sample is provisional and is not cleared for model training.
 
 Planned instruction tasks:
 - Prompt to folk poem.
@@ -367,7 +373,7 @@ Planned instruction tasks:
 - Dialect question answering (meaning of regional words).
 - Tool-call format for the agent.
 
-The team will compare the base and fine-tuned model on held-out data.
+The team will compare the untuned and fine-tuned versions of the selected checkpoint on the same held-out development prompts; keep the locked test split untouched until final evaluation.
 
 The evaluation will include perplexity and judged output quality.
 
