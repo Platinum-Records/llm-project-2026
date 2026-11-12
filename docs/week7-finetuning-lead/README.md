@@ -2,8 +2,8 @@
 
 **Prepared by:** Răzvan Nojea
 **Status:** I completed controlled smoke tests for Qwen and Gemma. RoLlama remains blocked by pending Hugging Face access to its base model.
-**GPU check:** 2026-11-10
-**Controlled inference run:** 2026-11-12
+**GPU check:** 10-11-2026
+**Controlled inference run:** 12-11-2026
 
 ## What I Checked
 
