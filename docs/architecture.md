@@ -397,6 +397,8 @@ The project will evaluate structure, creative quality, meaning preservation, and
 
 The Golden Dataset will provide a repeatable basis for comparing system configurations and retrieval experiments.
 
+Metrics, pass thresholds, split usage and the experiment protocol are defined in [`docs/evaluation-criteria.md`](evaluation-criteria.md).
+
 ---
 
 ## 7. Implementation Plan
