@@ -2,7 +2,7 @@
 
 **Owner:** Evaluation & Documentation Lead
 **Status:** Week 8 evaluation rules documented in PR #8. Team approval is pending.
-**Applies to:** `data/eval/golden_v1.jsonl` (draft: `data/eval/golden_v1_draft.jsonl`)
+**Applies to:** `data/eval/golden_v1.jsonl`
 
 This document defines how every system configuration (A: commercial baseline, B: untuned SLM, C: fine-tuned SLM) and every experiment (E2–E7) is scored on the Golden Dataset, so that results are comparable across weeks and team members.
 
@@ -29,7 +29,7 @@ This document defines how every system configuration (A: commercial baseline, B:
 
 ## 2. Generation (`task = generation`, 60 items)
 
-Every generated output is scored on the dimensions below. Structural checks are automatic; quality checks are judged.
+Give the system the Romanian prompt and the item constraints for generation. Every generated output is scored on the dimensions below. Structural checks are automatic; quality checks are judged.
 
 | Dimension | How it is measured | Tool / judge | Score |
 |---|---|---|---|
@@ -61,7 +61,7 @@ Syllable targets are taken from the corpus: folk lines 7–8 syllables (traditio
 
 **Reported:** mean correctness, grounding rate (only for items with `expected_chunks`), hallucination rate.
 
-Only items with `status = validated` count in reported results. Items still `pending_dialect_validation` are reported separately until they are validated.
+Only dialect items with `status = validated` count in reported results. Items g-005 through g-012 are eligible for correctness scoring and excluded from grounding scores because they have no eligible corpus references. The provisional rap-original-021 provides no dialect evidence. Items still `pending_dialect_validation` are reported separately until they are validated.
 
 ---
 
@@ -99,6 +99,8 @@ Regional-term counting and dialect correctness use one shared list: the terms of
 ---
 
 ## 7. Experiment protocol
+
+The dataset validator checks data structure and reference IDs. Model runs and team approval are separate.
 
 | Experiment | Week | Split | Tasks / metrics used |
 |---|---|---|---|

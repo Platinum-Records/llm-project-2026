@@ -31,7 +31,7 @@ I recommend Qwen3-4B-Instruct-2507 as the first QLoRA candidate, subject to a tr
 
 ## Prompts and Data Handling
 
-I used three prompts from the Evaluation Lead's [`golden_v1_draft.jsonl`](https://github.com/Platinum-Records/llm-project-2026/blob/main/data/eval/golden_v1_draft.jsonl):
+I used three prompts from the Evaluation Lead's [`golden_v1_draft.jsonl`](https://github.com/Platinum-Records/llm-project-2026/blob/79848068174e4313e8eba3172269231fd1083bac/data/eval/golden_v1_draft.jsonl):
 
 | ID      | Task            | Prompt and constraints                                                                                                                   |
 | ------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |

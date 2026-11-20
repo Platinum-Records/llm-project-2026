@@ -1,8 +1,8 @@
 # Golden Dataset v1
 
-**File:** `golden_v1_draft.jsonl` (100 examples, one JSON object per line). It will be renamed to `golden_v1.jsonl` when frozen.
+**File:** `golden_v1.jsonl` (100 examples, one JSON object per line).
 **Owner:** Evaluation & Documentation Lead
-**Status:** Week 8 — expanded to 100 examples with dev / locked-test splits. Freezing is waiting for the items listed under *Before freezing*.
+**Status:** Week 8 v1 deliverable for PR #8 review, with fixed dev and locked test splits. Team sign-off is pending.
 **Scoring rules:** see [`docs/evaluation-criteria.md`](../../docs/evaluation-criteria.md).
 
 > The `test` split is locked: use it only for the final system comparisons (E5, Week 11; final evaluation, Week 13). Never use golden examples for fine-tuning or for building the retrieval corpus.
@@ -42,6 +42,7 @@ Eight generation items (g-052 – g-055 folk, g-077 – g-080 rap) ask the syste
 
 ## Splits
 
+- Use `dev` to develop and tune prompts, retrieval, and model settings. Use `test` only for the final comparisons specified above and record any later correction to test data.
 - 30% locked test, stratified by task, mode, Week 7 vs Week 8 dialect items and meaning-preservation items; fixed seed 2026.
 - Items used outside evaluation must stay in `dev`: **g-001, g-003, g-004** (used in the Week 7 fine-tuning smoke tests). The validator enforces this.
 
@@ -68,7 +69,11 @@ Run from the repository root:
 
     python eval/validate_golden.py
 
-It checks JSON validity, fields, allowed values, generation constraints, that every `expected_chunks` ID exists in the corpus, and that exposed items are not in `test`.
+The default command selects `data/eval/golden_v1.jsonl`. To specify both inputs explicitly, run:
+
+    python eval/validate_golden.py data/eval/golden_v1.jsonl data/processed/chunks.jsonl
+
+The validator checks JSON, schema, generation constraints, chunk ID existence, and exposed items' splits. The warning for g-002 is expected. Passing these checks establishes technical validity only. Evaluation runs and team approval are separate.
 
 ## Dialect validation
 
@@ -77,13 +82,13 @@ It checks JSON validity, fields, allowed values, generation constraints, that ev
 | Week 7 | g-001, g-005 – g-013 | **Validated** on 2026-11-11 by the Evaluation Lead (Luiza) and the Data Lead (Taisia), native-speaker agreement. |
 | Week 8 | g-081 – g-090 | All 10 examples are marked `validated` in the JSONL. All 10 terms occur in the folk corpus. |
 
-The answers for g-005 – g-012 are marked `validated`, but their `expected_chunks` lists are empty because no corpus excerpts are eligible for grounding. Several forms appear in `rap-original-021`, a provisional draft excluded as evidence for `dialect_qa`.
+The answers for g-005 – g-012 are marked `validated`, but their `expected_chunks` lists are empty because no corpus excerpts are eligible for grounding. Several forms appear in `rap-original-021`, a provisional draft excluded as evidence for `dialect_qa`. These eight answers remain eligible for correctness scoring and are excluded from grounding scores.
 
 Week 8 answers from the JSONL:
 
 | ID | Term | Reference answer (Romanian) | Corpus chunks |
 |---|---|---|---|
-| g-081 | lele | Apelativ popular pentru o soră mai mare sau o femeie mai în vârstă. În versurile citate, este o adresare afectuoasă către iubită. | folk-jb1895-014, -025 |
+| g-081 | lele | Apelativ popular pentru o soră mai mare sau o femeie mai în vârstă. În poezia populară, poate fi o adresare afectuoasă către iubită. | folk-jb1895-014, -025 |
 | g-082 | nime | Nimeni. | folk-jb1895-026, -030 |
 | g-083 | de urât | Din plictiseală sau din apăsarea singurătății. | folk-jb1895-004 |
 | g-084 | ibovnic | Iubit, persoana iubită. | folk-jb1895-020 |
@@ -94,13 +99,11 @@ Week 8 answers from the JSONL:
 | g-089 | a omeni | A primi cu ospitalitate, a ospăta. | folk-jb1895-024 |
 | g-090 | cioareci | Pantaloni țărănești strânși pe picior, din țesătură de lână, de exemplu pănură sau dimie. | folk-jb1895-023 |
 
-## Before freezing
+## Review and maintenance
 
-1. Record the Data Lead confirmation for g-081 – g-090. All ten are already marked `validated` in the JSONL.
-2. Check the Romanian wording of the 70 new prompts (g-031 – g-100).
-3. Remap `expected_chunks` if the Data Lead's Week 8 corpus changes chunk IDs (stanza-based chunking), and link chunks for g-005 – g-012 once dialect material is added.
-4. Confirm the evaluation rules documented in PR #8 and in `docs/evaluation-criteria.md` with the team.
-5. Rename to `golden_v1.jsonl` and commit. After freezing, change `test` items only to fix clear errors, and record every change.
+- The Romanian prompts have been reviewed and the current chunk IDs checked. If chunk IDs change in a later corpus version, remap the references. Link g-005 through g-012 when eligible dialect material is available.
+- Record the Data Lead confirmation for g-081 through g-090 and the team's decision on the evaluation rules in PR #8. The ten JSONL status values record the current answers and team sign-off remains pending.
+- Keep the test split locked. After freezing, change test items only to fix clear errors and record every change.
 
 ## Known gaps
 
