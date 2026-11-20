@@ -1,7 +1,7 @@
 # Evaluation Criteria — Golden Dataset v1
 
 **Owner:** Evaluation & Documentation Lead
-**Status:** Week 8 proposal. Values marked *(proposed)* need team confirmation before the dataset is frozen.
+**Status:** Week 8 evaluation rules documented in PR #8. Team approval is pending.
 **Applies to:** `data/eval/golden_v1.jsonl` (draft: `data/eval/golden_v1_draft.jsonl`)
 
 This document defines how every system configuration (A: commercial baseline, B: untuned SLM, C: fine-tuned SLM) and every experiment (E2–E7) is scored on the Golden Dataset, so that results are comparable across weeks and team members.
@@ -43,7 +43,7 @@ Every generated output is scored on the dimensions below. Structural checks are 
 | Dialect authenticity | Sounds like genuine Transylvanian folk / regional rap | 2 native speakers, 1–5 (E7) | 1–5 |
 | Toxicity | Output flagged by the toxicity filter | MCP toxicity filter (Week 10) | 0/1 (lower is better) |
 
-**Structural pass** *(proposed)*: an item passes if line count is correct, syllable accuracy ≥ 0.75 (at most 1 of 4 lines outside the range), the rhyme scheme matches, and the regional-term minimum is met.
+**Structural pass:** an item passes only when all four conditions hold. The line count is correct, syllable accuracy is at least 0.75 (at least 3 of 4 lines are within range), the rhyme scheme matches, and the regional-term minimum is met.
 
 **Reported per system and mode:** structural pass rate, mean syllable accuracy, rhyme match rate, regional-term pass rate, mean invented terms per item, mean theme / meaning scores, toxicity rate.
 
@@ -76,10 +76,10 @@ The query is `prompt`; relevant results are `expected_chunks`, defined **before*
 | Precision@5 | Share of the top 5 results that are in `expected_chunks` (kept for comparability with E1) |
 
 - Mode filtering (E3) uses the item's `mode`.
-- Items with empty `expected_chunks` are excluded and listed in the report.
+- Exclude items with empty `expected_chunks` from scoring. The current exclusions are g-002 (no directly relevant folk excerpt about homesickness) and g-021 (its reference, rap-original-021, is pending approval and must be included in the retrieval index before scoring). Excluded items receive no score.
 - If chunk IDs change (e.g. stanza-based chunking in E2), `expected_chunks` must be remapped before comparing runs; runs on different chunkings are compared on Recall@5 and MRR@10 only.
 
-**Primary metric** *(proposed)*: Recall@5.
+**Primary metric: Recall@5.** Average the per-item Recall@5 scores over eligible items. Use the same eligible set for all systems in a comparison. Report results by split and mode, including the number of eligible items scored and the IDs of excluded items.
 
 ---
 
@@ -110,6 +110,6 @@ Regional-term counting and dialect correctness use one shared list: the terms of
 | E7 Human dialect authenticity | 13 | **test** | §6 |
 
 Rules for every run:
-- Use the same generation settings for all systems in one comparison and record them (decoding, temperature, `max_new_tokens`, model revision, date, GPU). In Week 7 both dialect answers hit the 220-token limit, so `max_new_tokens` should be at least 300 *(proposed)*.
+- Use the same generation settings for all systems in a comparison within each task and record them (decoding, temperature, effective output token limit, model revision, date, GPU). For `dialect_qa` comparisons, cap each response at 300 newly generated tokens (`max_new_tokens=300` or the equivalent setting) and record the effective cap for each system. For `generation`, set and record a separate common cap before running the comparison. Retrieval scored on returned chunk IDs uses no generation token cap.
 - Save per-item outputs and scores, not only averages, under `eval/results/<experiment>/<system>.jsonl`, plus a `summary.json`.
 - Report results separately per task and mode, and always say which split was used.

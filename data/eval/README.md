@@ -54,6 +54,14 @@ Based on the Week 7 corpus (heuristic count per line): folk median 8 (p10–p90:
 | folk | 7–8 (traditional trochaic line) | 2 |
 | rap | 12–16 | 1 |
 
+## Evaluation rules
+
+PR #8 documents the following rules. Team approval is pending.
+
+- A generation item passes the structural check only if it meets all four conditions together. The output has the required line count, syllable accuracy is at least 0.75 (at least 3 of 4 lines within range), the rhyme scheme matches, and the regional-term minimum is met.
+- Recall@5 is the primary retrieval metric. Average the scores per eligible item, use the same eligible set for all systems in a comparison, and report by split and mode with the number of items scored and the IDs excluded. Items with empty `expected_chunks` are excluded. The current exclusions are g-002 and g-021, as described under Known gaps. Excluded items receive no score.
+- In `dialect_qa` comparisons, cap responses at 300 newly generated tokens (`max_new_tokens=300` or equivalent) and record the effective cap for each system. For `generation`, set and record a separate common cap before the run. Retrieval scored on returned chunk IDs uses no generation token cap.
+
 ## Validation
 
 Run from the repository root:
@@ -66,34 +74,36 @@ It checks JSON validity, fields, allowed values, generation constraints, that ev
 
 | Batch | Items | Status |
 |---|---|---|
-| Week 7 | g-001, g-005 – g-013 | **Validated** on 2026-11-11 by the Evaluation Lead (Luiza) and the Data Lead (Taisia), native-speaker agreement. g-005 – g-012 are not yet in the corpus. |
-| Week 8 | g-081 – g-090 | **Pending validation** with the Data Lead. All 10 terms occur in the folk corpus. |
+| Week 7 | g-001, g-005 – g-013 | **Validated** on 2026-11-11 by the Evaluation Lead (Luiza) and the Data Lead (Taisia), native-speaker agreement. |
+| Week 8 | g-081 – g-090 | All 10 examples are marked `validated` in the JSONL. All 10 terms occur in the folk corpus. |
 
-Week 8 terms to validate:
+The answers for g-005 – g-012 are marked `validated`, but their `expected_chunks` lists are empty because no corpus excerpts are eligible for grounding. Several forms appear in `rap-original-021`, a provisional draft excluded as evidence for `dialect_qa`.
 
-| ID | Term | Draft answer | Corpus chunks |
+Week 8 answers from the JSONL:
+
+| ID | Term | Reference answer (Romanian) | Corpus chunks |
 |---|---|---|---|
-| g-081 | lele | older woman / older sister; in folk poetry a young woman or sweetheart | folk-jb1895-014, -025 |
-| g-082 | nime | nobody (nimeni) | folk-jb1895-026, -030 |
-| g-083 | de urât | out of loneliness, boredom, longing | folk-jb1895-004 |
-| g-084 | ibovnic | lover, beloved | folk-jb1895-020 |
-| g-085 | șurț | apron (șorț) | folk-jb1895-005 |
-| g-086 | chică | hair, long locks | folk-jb1895-036 |
-| g-087 | rujă | rose (trandafir) | folk-jb1895-012, -033 |
-| g-088 | scoverzi | pancakes (clătite) | folk-jb1895-024 |
-| g-089 | a omeni | to host with food and drink | folk-jb1895-024 |
-| g-090 | cioareci | tight woollen peasant trousers | folk-jb1895-023 |
+| g-081 | lele | Apelativ popular pentru o soră mai mare sau o femeie mai în vârstă. În versurile citate, este o adresare afectuoasă către iubită. | folk-jb1895-014, -025 |
+| g-082 | nime | Nimeni. | folk-jb1895-026, -030 |
+| g-083 | de urât | Din plictiseală sau din apăsarea singurătății. | folk-jb1895-004 |
+| g-084 | ibovnic | Iubit, persoana iubită. | folk-jb1895-020 |
+| g-085 | șurț | Șorț. | folk-jb1895-005 |
+| g-086 | chică | Păr (lung), plete; „cu chica creață” înseamnă „cu părul creț”. | folk-jb1895-036 |
+| g-087 | rujă | O floare. „Trandafir” este un sens regional posibil, dar specia nu este precizată în versuri. | folk-jb1895-012, -033 |
+| g-088 | scoverzi | Un preparat din aluat prăjit, de tip plăcintă sau clătită. | folk-jb1895-024 |
+| g-089 | a omeni | A primi cu ospitalitate, a ospăta. | folk-jb1895-024 |
+| g-090 | cioareci | Pantaloni țărănești strânși pe picior, din țesătură de lână, de exemplu pănură sau dimie. | folk-jb1895-023 |
 
 ## Before freezing
 
-1. Validate g-081 – g-090 with the Data Lead and set their `status` to `validated`.
+1. Record the Data Lead confirmation for g-081 – g-090. All ten are already marked `validated` in the JSONL.
 2. Check the Romanian wording of the 70 new prompts (g-031 – g-100).
 3. Remap `expected_chunks` if the Data Lead's Week 8 corpus changes chunk IDs (stanza-based chunking), and link chunks for g-005 – g-012 once dialect material is added.
-4. Confirm the *(proposed)* values in `docs/evaluation-criteria.md`.
+4. Confirm the evaluation rules documented in PR #8 and in `docs/evaluation-criteria.md` with the team.
 5. Rename to `golden_v1.jsonl` and commit. After freezing, change `test` items only to fix clear errors, and record every change.
 
 ## Known gaps
 
-- **Corpus coverage:** g-002 (homesickness) has only a weak folk match; g-021 depends on `rap-original-021`, which is still pending team review.
+- **Corpus coverage.** g-002 has an empty `expected_chunks` list because the corpus has no directly relevant folk excerpt about homesickness. g-021 retains `rap-original-021` as a candidate reference and is excluded from official scoring until the chunk is approved and included in the retrieval index. The chunk provides no grounding for `dialect_qa` answers.
 - **References:** generation items have no human-written reference verses (`reference: null`); constraints and judged scores are used instead.
-- **Chunk references** point to the provisional Week 7 corpus (61 records, all `provisional_unapproved`).
+- **Chunk references** point to the current corpus (66 records, all `provisional_unapproved`).
