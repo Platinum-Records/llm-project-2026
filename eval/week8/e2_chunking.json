@@ -1,0 +1,336 @@
+{
+  "model": "BAAI/bge-m3",
+  "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "corpus_sha256": "20c9185abccd3b530c8f624f735e239b0eeb7d0ee28f0745ac47bca9946e81bc",
+  "golden_sha256": "9bb6f1e10851a1f08a77dcbb50d2dbc655b6a64f9e9ce8babddf0d311bf7caf5",
+  "query_count": 9,
+  "split": "dev",
+  "mode_filter": null,
+  "window_words": 16,
+  "corpus_chunks": {
+    "collection": "week8_bge_m3_20c9185abccd3b53",
+    "indexed_chunks": 66,
+    "hit_rate_at_5": 0.8888888888888888,
+    "recall_at_5": 0.7314814814814814,
+    "mrr_at_5": 0.587037037037037,
+    "queries": [
+      {
+        "id": "g-001",
+        "expected_ids": [
+          "folk-jb1895-001",
+          "folk-jb1895-005",
+          "folk-jb1895-022",
+          "folk-jb1895-027",
+          "folk-jb1895-030",
+          "folk-jb1895-036"
+        ],
+        "top_ids": [
+          "rap-original-021",
+          "rap-original-002",
+          "folk-jb1895-038",
+          "folk-jb1895-030",
+          "folk-jb1895-005"
+        ],
+        "hit": 1,
+        "recall": 0.3333333333333333,
+        "reciprocal_rank": 0.25
+      },
+      {
+        "id": "g-013",
+        "expected_ids": [
+          "folk-jb1895-002",
+          "folk-jb1895-011",
+          "folk-jb1895-016",
+          "folk-jb1895-022"
+        ],
+        "top_ids": [
+          "folk-jb1895-035",
+          "folk-jb1895-022",
+          "folk-jb1895-007",
+          "folk-jb1895-006",
+          "folk-jb1895-017"
+        ],
+        "hit": 1,
+        "recall": 0.25,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "id": "g-081",
+        "expected_ids": [
+          "folk-jb1895-014",
+          "folk-jb1895-025"
+        ],
+        "top_ids": [
+          "folk-jb1895-025",
+          "folk-jb1895-014",
+          "rap-original-021",
+          "folk-jb1895-038",
+          "folk-jb1895-042"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "g-083",
+        "expected_ids": [
+          "folk-jb1895-004"
+        ],
+        "top_ids": [
+          "folk-jb1895-004",
+          "folk-jb1895-010",
+          "folk-jb1895-007",
+          "folk-jb1895-045",
+          "folk-jb1895-033"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "g-084",
+        "expected_ids": [
+          "folk-jb1895-020"
+        ],
+        "top_ids": [
+          "folk-jb1895-020",
+          "folk-jb1895-011",
+          "folk-jb1895-040",
+          "folk-jb1895-029",
+          "folk-jb1895-015"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "g-085",
+        "expected_ids": [
+          "folk-jb1895-005"
+        ],
+        "top_ids": [
+          "folk-jb1895-025",
+          "folk-jb1895-024",
+          "folk-jb1895-005",
+          "folk-jb1895-022",
+          "rap-original-021"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 0.3333333333333333
+      },
+      {
+        "id": "g-087",
+        "expected_ids": [
+          "folk-jb1895-012",
+          "folk-jb1895-033"
+        ],
+        "top_ids": [
+          "folk-jb1895-033",
+          "folk-jb1895-012",
+          "folk-jb1895-014",
+          "folk-jb1895-021",
+          "folk-jb1895-036"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "g-088",
+        "expected_ids": [
+          "folk-jb1895-024"
+        ],
+        "top_ids": [
+          "rap-original-021",
+          "rap-original-002",
+          "folk-jb1895-015",
+          "folk-jb1895-038",
+          "folk-jb1895-024"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 0.2
+      },
+      {
+        "id": "g-089",
+        "expected_ids": [
+          "folk-jb1895-024"
+        ],
+        "top_ids": [
+          "rap-original-006",
+          "rap-original-021",
+          "folk-jb1895-039",
+          "rap-original-017",
+          "folk-jb1895-040"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0
+      }
+    ]
+  },
+  "fixed_windows": {
+    "collection": "week8_bge_m3_ed503ac0413708d6",
+    "indexed_chunks": 158,
+    "hit_rate_at_5": 0.8888888888888888,
+    "recall_at_5": 0.8333333333333334,
+    "mrr_at_5": 0.7037037037037037,
+    "queries": [
+      {
+        "id": "g-001",
+        "expected_ids": [
+          "folk-jb1895-001",
+          "folk-jb1895-005",
+          "folk-jb1895-022",
+          "folk-jb1895-027",
+          "folk-jb1895-030",
+          "folk-jb1895-036"
+        ],
+        "top_ids": [
+          "rap-original-021",
+          "rap-original-002",
+          "folk-jb1895-005",
+          "folk-jb1895-030",
+          "folk-jb1895-027"
+        ],
+        "hit": 1,
+        "recall": 0.5,
+        "reciprocal_rank": 0.3333333333333333
+      },
+      {
+        "id": "g-013",
+        "expected_ids": [
+          "folk-jb1895-002",
+          "folk-jb1895-011",
+          "folk-jb1895-016",
+          "folk-jb1895-022"
+        ],
+        "top_ids": [
+          "folk-jb1895-008",
+          "folk-jb1895-006",
+          "folk-jb1895-035",
+          "folk-jb1895-038",
+          "folk-jb1895-028"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0
+      },
+      {
+        "id": "g-081",
+        "expected_ids": [
+          "folk-jb1895-014",
+          "folk-jb1895-025"
+        ],
+        "top_ids": [
+          "folk-jb1895-025",
+          "folk-jb1895-042",
+          "folk-jb1895-014",
+          "folk-jb1895-038",
+          "folk-jb1895-033"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "g-083",
+        "expected_ids": [
+          "folk-jb1895-004"
+        ],
+        "top_ids": [
+          "folk-jb1895-004",
+          "folk-jb1895-010",
+          "folk-jb1895-033",
+          "folk-jb1895-007",
+          "folk-jb1895-045"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "g-084",
+        "expected_ids": [
+          "folk-jb1895-020"
+        ],
+        "top_ids": [
+          "folk-jb1895-020",
+          "folk-jb1895-014",
+          "folk-jb1895-032",
+          "folk-jb1895-015",
+          "folk-jb1895-029"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "g-085",
+        "expected_ids": [
+          "folk-jb1895-005"
+        ],
+        "top_ids": [
+          "folk-jb1895-025",
+          "folk-jb1895-005",
+          "folk-jb1895-023",
+          "folk-jb1895-024",
+          "folk-jb1895-022"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "id": "g-087",
+        "expected_ids": [
+          "folk-jb1895-012",
+          "folk-jb1895-033"
+        ],
+        "top_ids": [
+          "folk-jb1895-033",
+          "folk-jb1895-012",
+          "folk-jb1895-014",
+          "folk-jb1895-021",
+          "folk-jb1895-034"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0
+      },
+      {
+        "id": "g-088",
+        "expected_ids": [
+          "folk-jb1895-024"
+        ],
+        "top_ids": [
+          "rap-original-021",
+          "folk-jb1895-024",
+          "rap-original-002",
+          "folk-jb1895-023",
+          "folk-jb1895-032"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 0.5
+      },
+      {
+        "id": "g-089",
+        "expected_ids": [
+          "folk-jb1895-024"
+        ],
+        "top_ids": [
+          "folk-jb1895-024",
+          "folk-jb1895-039",
+          "folk-jb1895-032",
+          "rap-original-006",
+          "folk-jb1895-023"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0
+      }
+    ]
+  }
+}
