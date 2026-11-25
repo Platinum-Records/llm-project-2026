@@ -51,6 +51,38 @@ a small set of exceptions. The same written vowel sequence can represent a
 diphthong or hiatus ([DOOM 3 pronunciation guidance](https://doom.lingv.ro/studiu_introductiv/reguli_scriere_pronuntare)),
 so dialect, loanwords, and poetic or performed elisions may need manual review.
 
+## Week 8 MCP tools
+
+The stdio server now exposes `syllable_counter`, `rhyme_checker` and
+`retrieve_context`. Install `qdrant-client` as well as the MCP/pytest dependencies
+above for the full test suite (`python -m pytest -q`).
+
+`rhyme_checker` accepts `text` and an optional `expected_scheme` such as `ABAB`.
+It reports the observed scheme, line numbers, final words and endings, an
+optional scheme match, and a quality label (`estimated_rhyme`,
+`repeated_end_word`, or `no_rhyme`). Blank lines are skipped; letters in the
+expected scheme correspond to nonblank lines. Equivalent labelings such as
+`CCDD` and `AABB` are treated alike. This is a spelling heuristic using an
+approximation of final/penultimate stress, not a phonetic rhyme assessment.
+Irregular stress, vowel groups, dialect and performed rap require human review.
+
+`retrieve_context` accepts `query`, optional `mode` (`folk`, `rap`, or omitted),
+and `limit` (1–20, default 5). It calls the existing Week 8 `BaselineRetriever`
+and returns `{"chunks": [...]}` with ranked payloads, provenance and scores.
+An empty list means no matches; backend failures are MCP tool errors.
+One retriever is created lazily and reused for the server process.
+
+Follow [Week 8 RAG setup](docs/week8-rag.md) to install the embedding dependencies,
+start Qdrant and ingest the corpus before retrieving. The tool never ingests.
+Optional environment variables `QDRANT_URL` and `RAG_DATA_PATH` select the server
+and corpus snapshot; ingest that same snapshot using the baseline CLI's `--url`
+and `--data` options. Restart the MCP server after changing the corpus or config.
+Launch from the repository root with `python -m mcp_server.server`.
+
+Tests cover all three tools, stdio discovery/calls/errors and the retrieval
+adapter against the real baseline with in-memory Qdrant and deterministic test
+vectors. They do not measure live BGE-M3 semantic retrieval quality.
+
 ## Week 7 RAG prototype
 
 - [Windows setup and execution](docs/week7-rag-setup.md)

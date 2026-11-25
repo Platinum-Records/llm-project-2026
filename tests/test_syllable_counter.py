@@ -59,8 +59,9 @@ def test_tool_can_be_discovered_and_called_over_stdio() -> None:
             cwd=Path(__file__).resolve().parents[1],
         )
         async with Client(params) as client:
-            (tool,) = (await client.list_tools()).tools
-            assert tool.name == "syllable_counter"
+            tools = {tool.name: tool for tool in (await client.list_tools()).tools}
+            assert set(tools) == {"syllable_counter", "rhyme_checker", "retrieve_context"}
+            tool = tools["syllable_counter"]
             assert tool.input_schema["properties"]["text"]["type"] == "string"
             result = await client.call_tool(tool.name, {"text": "Pomi\nUn râu"})
             assert not result.is_error
