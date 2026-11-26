@@ -1,96 +1,62 @@
 # Transylvanian Folk & Rap Dual-Mode Creative Agent
 
-Agent that turns prompts into Transylvanian folk poetry or rap, using a fine-tuned SLM, RAG and an MCP tool server.
+An agent that turns ordinary prompts into **Transylvanian folk poetry** or **regional rap**, combining a small language model (SLM), retrieval-augmented generation (RAG) over a curated regional corpus, and an MCP server with text-analysis tools (syllables, rhyme, retrieval).
 
-## Structure
-- `docs/` RFC, architecture, timeline and weekly role documentation (e.g. `docs/week7-data-lead/`, `docs/week7-rag-report.md`)
-- `data/raw/` provisional source samples (folk transcriptions, rap drafts)
-- `data/processed/chunks.jsonl` cleaned and deduplicated records used for retrieval
-- `data/eval/` Golden Dataset for evaluation (see `data/eval/README.md`)
-- `sources.csv` source inventory with provenance and licensing status
-- `src/` ingestion, RAG, agent, fine-tuning code
-- `mcp_server/` MCP tools (syllable counter, rhyme checker, ...)
-- `eval/` evaluation scripts and experiment results (e.g. `eval/week7/`)
-- `notebooks/` experiments
+**Team Platinum Records:** Taisia (Data) · Roxana (RAG) · Răzvan (Fine-tuning) · Denis (MCP / Agent) · Luiza (Evaluation & Documentation)
 
-> All data in `data/raw/` and `data/processed/` is a **provisional Week 7 sample** (`provisional_unapproved`): for local prototyping and evaluation only, not approved for training or public deployment.
+## Progress
 
-## Setup
-    python -m venv .venv
-    .venv\Scripts\activate
-    pip install -r requirements.txt
+| Week | Milestone | Status | Reports |
+|---|---|---|---|
+| 6 | Architecture and planning | ✅ Done | [Architecture](docs/architecture.md) · [RFC](docs/RFC.md) |
+| 7 | Data preparation and initial infrastructure | ✅ Done | [Data](docs/week7/data-lead/README.md) · [RAG](docs/week7/rag-report.md) · [Fine-tuning](docs/week7/finetuning-lead.md) · [MCP](docs/mcp-server.md) |
+| 8 | Baseline RAG and dataset finalisation | ✅ Done | [RAG](docs/week8/rag.md) · [Model comparison](docs/week8/finetuning-lead.md) · [Golden Dataset](data/eval/README.md) · [Evaluation criteria](docs/evaluation-criteria.md) |
+| 9 | Progress check: agent loop with RAG and three tools | ▶ Next | |
+| 10 | Fine-tuning and ingestion | Planned | |
+| 11 | Full toolset and model comparison | Planned | |
+| 12 | GitHub progress review | Planned | |
+| 13 | Final evaluation and improvements | Planned | |
+| 14 | Final presentation | Planned | |
 
-## Usage
+Tasks per role and week: **[docs/timeline.md](docs/timeline.md)**
 
-Rebuild the processed dataset from the raw files:
+## Repository structure
 
-    python src/ingestion/clean.py
-
-Check that the Golden Dataset is well-formed and that its chunk references exist:
-
-    python eval/validate_golden.py
-
-## Week 7 MCP syllable counter
-
-From the repository root, install the MCP and test dependencies and run the tests:
-
-```sh
-python -m pip install "mcp>=2.2,<3" pytest
-python -m pytest -q
+```text
+data/
+  raw/                 provisional source samples (folk transcriptions, rap drafts)
+  processed/           chunks.jsonl, the cleaned retrieval corpus
+  eval/                Golden Dataset v1 (100 items, dev / locked test)
+docs/                  RFC, architecture, timeline, evaluation criteria, MCP server
+  week7/, week8/       weekly reports per role
+eval/                  dataset validator and experiment results per week
+mcp_server/            MCP tools: syllable_counter, rhyme_checker, retrieve_context
+notebooks/             experiment notebooks (RAG retrieval, model comparison)
+src/                   ingestion, rag, finetune (agent: upcoming)
+tests/                 pytest suite
+sources.csv            source inventory with provenance and licensing
 ```
 
-Configure an MCP client to launch `python -m mcp_server.server` from the
-repository root using stdio. The read-only `syllable_counter` tool takes a
-`text` string and returns one record per line, including blank lines. For
-example, `{"text":"Pomi\nUn râu"}` returns counts of 1 and 2, with each
-line's original text and 1-based line number. Digits and punctuation do not
-contribute syllables.
+All corpus data is a provisional sample (`provisional_unapproved`): for prototyping and evaluation only, not approved for training or public deployment.
 
-The counter estimates standard Romanian pronunciation using spelling rules and
-a small set of exceptions. The same written vowel sequence can represent a
-diphthong or hiatus ([DOOM 3 pronunciation guidance](https://doom.lingv.ro/studiu_introductiv/reguli_scriere_pronuntare)),
-so dialect, loanwords, and poetic or performed elisions may need manual review.
+## Quick start
 
-## Week 8 MCP tools
+Python 3.12, from the repository root:
 
-The stdio server now exposes `syllable_counter`, `rhyme_checker` and
-`retrieve_context`. Install `qdrant-client` as well as the MCP/pytest dependencies
-above for the full test suite (`python -m pytest -q`).
+```sh
+python -m venv .venv
+.venv\Scripts\activate          # macOS / Linux: source .venv/bin/activate
+pip install -r requirements.txt
 
-`rhyme_checker` accepts `text` and an optional `expected_scheme` such as `ABAB`.
-It reports the observed scheme, line numbers, final words and endings, an
-optional scheme match, and a quality label (`estimated_rhyme`,
-`repeated_end_word`, or `no_rhyme`). Blank lines are skipped; letters in the
-expected scheme correspond to nonblank lines. Equivalent labelings such as
-`CCDD` and `AABB` are treated alike. This is a spelling heuristic using an
-approximation of final/penultimate stress, not a phonetic rhyme assessment.
-Irregular stress, vowel groups, dialect and performed rap require human review.
+python src/ingestion/clean.py     # rebuild data/processed/chunks.jsonl
+python eval/validate_golden.py    # check the Golden Dataset
+python -m pytest -q               # run the tests
+```
 
-`retrieve_context` accepts `query`, optional `mode` (`folk`, `rap`, or omitted),
-and `limit` (1–20, default 5). It calls the existing Week 8 `BaselineRetriever`
-and returns `{"chunks": [...]}` with ranked payloads, provenance and scores.
-An empty list means no matches; backend failures are MCP tool errors.
-One retriever is created lazily and reused for the server process.
+Retrieval needs a running Qdrant instance: see [docs/week8/rag.md](docs/week8/rag.md). The model comparison needs a GPU: see [docs/week8/finetuning-lead.md](docs/week8/finetuning-lead.md).
 
-Follow [Week 8 RAG setup](docs/week8-rag.md) to install the embedding dependencies,
-start Qdrant and ingest the corpus before retrieving. The tool never ingests.
-Optional environment variables `QDRANT_URL` and `RAG_DATA_PATH` select the server
-and corpus snapshot; ingest that same snapshot using the baseline CLI's `--url`
-and `--data` options. Restart the MCP server after changing the corpus or config.
-Launch from the repository root with `python -m mcp_server.server`.
+## Documentation
 
-Tests cover all three tools, stdio discovery/calls/errors and the retrieval
-adapter against the real baseline with in-memory Qdrant and deterministic test
-vectors. They do not measure live BGE-M3 semantic retrieval quality.
-
-## Week 7 RAG prototype
-
-- [Windows setup and execution](docs/week7-rag-setup.md)
-- [Retrieval notebook](notebooks/week7_rag_retrieval.ipynb)
-- [Exploratory embedding comparison](docs/week7-rag-report.md)
-
-The prototype was run on the original 60 provisional corpus fragments (the corpus now has 61). Relevance labels and Precision@5 results are preliminary and pending team review.
-
-## Week 8 model comparison
-
-`src/finetune/compare_models.py` compares Qwen3-4B and Gemma 3 4B on the Golden Dataset dev split, with and without retrieved context, and scores the outputs with the MCP tools. It needs a GPU: run `notebooks/week8_model_comparison.ipynb` on Colab. See [docs/week8-finetuning-lead/README.md](docs/week8-finetuning-lead/README.md).
+- **Project:** [RFC](docs/RFC.md) · [Architecture](docs/architecture.md) · [Timeline](docs/timeline.md) · [Architecture presentation](docs/architecture-presentation.pdf)
+- **Evaluation:** [Evaluation criteria](docs/evaluation-criteria.md) · [Golden Dataset](data/eval/README.md)
+- **Components:** [MCP server](docs/mcp-server.md) · [RAG baseline](docs/week8/rag.md) · [Week 7 RAG setup (Windows)](docs/week7/rag-setup.md)

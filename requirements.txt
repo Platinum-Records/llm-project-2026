@@ -1,8 +1,9 @@
-﻿qdrant-client
+qdrant-client
 sentence-transformers
 FlagEmbedding
 mcp>=2.2,<3
 transformers
+accelerate
 peft
 trl
 datasets

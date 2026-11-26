@@ -25,7 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 GOLDEN = ROOT / "data/eval/golden_v1.jsonl"
 CHUNKS = ROOT / "data/processed/chunks.jsonl"
-OUTPUT = ROOT / "eval/results/week8_model_comparison"
+OUTPUT = ROOT / "eval/week8/model_comparison"
 
 MODELS = {
     "qwen3-4b": "Qwen/Qwen3-4B-Instruct-2507",

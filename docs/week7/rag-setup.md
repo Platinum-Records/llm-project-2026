@@ -92,4 +92,4 @@ The dataset is provisional and intended for local prototyping.
 The model revisions are specified in the notebook.
 `eval/week7/environment.json` records package versions used for local verification.
 The root requirements.txt is not version-locked; other versions may behave differently.
-See week7-rag-report.md for evaluation scope and limitations.
+See rag-report.md for evaluation scope and limitations.

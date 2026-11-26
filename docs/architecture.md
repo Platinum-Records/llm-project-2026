@@ -56,7 +56,7 @@ The following sources have been identified as candidates for the initial dataset
 - dexonline: https://dexonline.ro
 - dexonline licensing information: https://radu.dexonline.ro/~radu/DEX/www/licenta
 
-**Week 7 status:** the initial sample (60 provisional records) uses only Jarník & Bârseanu (folk) and team rap drafts. dexonline extraction was excluded pending permission, and dialect dictionaries/regional glossaries were deferred until their reuse conditions are verified (see `docs/week7-data-lead/README.md`).
+**Week 7 status:** the initial sample (60 provisional records) uses only Jarník & Bârseanu (folk) and team rap drafts. dexonline extraction was excluded pending permission, and dialect dictionaries/regional glossaries were deferred until their reuse conditions are verified (see `docs/week7/data-lead/README.md`).
 
 The preferred initial folk source is *Doine și strigături din Ardeal*, because it contains authentic Transylvanian folk material and is available as a downloadable PDF with a public-domain designation.
 
