@@ -90,3 +90,7 @@ vectors. They do not measure live BGE-M3 semantic retrieval quality.
 - [Exploratory embedding comparison](docs/week7-rag-report.md)
 
 The prototype was run on the original 60 provisional corpus fragments (the corpus now has 61). Relevance labels and Precision@5 results are preliminary and pending team review.
+
+## Week 8 model comparison
+
+`src/finetune/compare_models.py` compares Qwen3-4B and Gemma 3 4B on the Golden Dataset dev split, with and without retrieved context, and scores the outputs with the MCP tools. It needs a GPU: run `notebooks/week8_model_comparison.ipynb` on Colab. See [docs/week8-finetuning-lead/README.md](docs/week8-finetuning-lead/README.md).

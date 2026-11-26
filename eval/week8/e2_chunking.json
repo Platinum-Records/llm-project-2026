@@ -2,20 +2,54 @@
   "model": "BAAI/bge-m3",
   "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
   "corpus_sha256": "20c9185abccd3b530c8f624f735e239b0eeb7d0ee28f0745ac47bca9946e81bc",
-  "golden_sha256": "9bb6f1e10851a1f08a77dcbb50d2dbc655b6a64f9e9ce8babddf0d311bf7caf5",
-  "query_count": 9,
+  "golden_sha256": "68af73d7672315f2b03c180902007b4551ef49f986d38ecbbb80328fee66fd8d",
+  "query_count": 21,
   "split": "dev",
   "mode_filter": null,
   "window_words": 16,
   "corpus_chunks": {
     "collection": "week8_bge_m3_20c9185abccd3b53",
     "indexed_chunks": 66,
-    "hit_rate_at_5": 0.8888888888888888,
-    "recall_at_5": 0.7314814814814814,
-    "mrr_at_5": 0.587037037037037,
+    "query_count": 21,
+    "hit_rate_at_5": 0.7619047619047619,
+    "recall_at_5": 0.5753968253968255,
+    "mrr_at_5": 0.576984126984127,
+    "mrr_at_10": 0.584920634920635,
+    "by_group": {
+      "dialect_qa": {
+        "query_count": 9,
+        "hit_rate_at_5": 0.8888888888888888,
+        "recall_at_5": 0.7314814814814814,
+        "mrr_at_5": 0.587037037037037,
+        "mrr_at_10": 0.587037037037037
+      },
+      "retrieval": {
+        "query_count": 12,
+        "hit_rate_at_5": 0.6666666666666666,
+        "recall_at_5": 0.4583333333333333,
+        "mrr_at_5": 0.5694444444444444,
+        "mrr_at_10": 0.5833333333333334
+      },
+      "retrieval/folk": {
+        "query_count": 7,
+        "hit_rate_at_5": 0.7142857142857143,
+        "recall_at_5": 0.4047619047619047,
+        "mrr_at_5": 0.5476190476190477,
+        "mrr_at_10": 0.5476190476190477
+      },
+      "retrieval/rap": {
+        "query_count": 5,
+        "hit_rate_at_5": 0.6,
+        "recall_at_5": 0.5333333333333333,
+        "mrr_at_5": 0.6,
+        "mrr_at_10": 0.6333333333333333
+      }
+    },
     "queries": [
       {
         "id": "g-001",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-001",
           "folk-jb1895-005",
@@ -33,10 +67,13 @@
         ],
         "hit": 1,
         "recall": 0.3333333333333333,
-        "reciprocal_rank": 0.25
+        "reciprocal_rank": 0.25,
+        "reciprocal_rank_at_10": 0.25
       },
       {
         "id": "g-013",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-002",
           "folk-jb1895-011",
@@ -52,10 +89,139 @@
         ],
         "hit": 1,
         "recall": 0.25,
-        "reciprocal_rank": 0.5
+        "reciprocal_rank": 0.5,
+        "reciprocal_rank_at_10": 0.5
+      },
+      {
+        "id": "g-014",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-024",
+          "folk-jb1895-029",
+          "folk-jb1895-030",
+          "folk-jb1895-041"
+        ],
+        "top_ids": [
+          "rap-original-021",
+          "folk-jb1895-024",
+          "rap-original-009",
+          "rap-original-002",
+          "folk-jb1895-030"
+        ],
+        "hit": 1,
+        "recall": 0.5,
+        "reciprocal_rank": 0.5,
+        "reciprocal_rank_at_10": 0.5
+      },
+      {
+        "id": "g-015",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-015",
+          "folk-jb1895-019",
+          "folk-jb1895-030"
+        ],
+        "top_ids": [
+          "folk-jb1895-015",
+          "folk-jb1895-038",
+          "rap-original-002",
+          "folk-jb1895-020",
+          "folk-jb1895-035"
+        ],
+        "hit": 1,
+        "recall": 0.3333333333333333,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-016",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-002",
+          "folk-jb1895-009",
+          "folk-jb1895-030"
+        ],
+        "top_ids": [
+          "rap-original-021",
+          "folk-jb1895-020",
+          "rap-original-002",
+          "folk-jb1895-006",
+          "folk-jb1895-036"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0
+      },
+      {
+        "id": "g-017",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-004",
+          "folk-jb1895-008",
+          "folk-jb1895-012"
+        ],
+        "top_ids": [
+          "folk-jb1895-045",
+          "folk-jb1895-044",
+          "folk-jb1895-004",
+          "rap-original-002",
+          "rap-original-014"
+        ],
+        "hit": 1,
+        "recall": 0.3333333333333333,
+        "reciprocal_rank": 0.3333333333333333,
+        "reciprocal_rank_at_10": 0.3333333333333333
+      },
+      {
+        "id": "g-019",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-001",
+          "rap-original-003",
+          "rap-original-008",
+          "rap-original-011"
+        ],
+        "top_ids": [
+          "folk-jb1895-012",
+          "folk-jb1895-009",
+          "rap-original-010",
+          "folk-jb1895-045",
+          "folk-jb1895-010"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0
+      },
+      {
+        "id": "g-022",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-019"
+        ],
+        "top_ids": [
+          "rap-original-002",
+          "rap-original-013",
+          "folk-jb1895-004",
+          "folk-jb1895-044",
+          "folk-jb1895-045"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0.16666666666666666
       },
       {
         "id": "g-081",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-014",
           "folk-jb1895-025"
@@ -69,10 +235,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       },
       {
         "id": "g-083",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-004"
         ],
@@ -85,10 +254,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       },
       {
         "id": "g-084",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-020"
         ],
@@ -101,10 +273,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       },
       {
         "id": "g-085",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-005"
         ],
@@ -117,10 +292,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 0.3333333333333333
+        "reciprocal_rank": 0.3333333333333333,
+        "reciprocal_rank_at_10": 0.3333333333333333
       },
       {
         "id": "g-087",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-012",
           "folk-jb1895-033"
@@ -134,10 +312,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       },
       {
         "id": "g-088",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-024"
         ],
@@ -150,10 +331,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 0.2
+        "reciprocal_rank": 0.2,
+        "reciprocal_rank_at_10": 0.2
       },
       {
         "id": "g-089",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-024"
         ],
@@ -166,19 +350,174 @@
         ],
         "hit": 0,
         "recall": 0.0,
-        "reciprocal_rank": 0
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0
+      },
+      {
+        "id": "g-092",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-022",
+          "folk-jb1895-023",
+          "folk-jb1895-031"
+        ],
+        "top_ids": [
+          "rap-original-016",
+          "rap-original-002",
+          "rap-original-011",
+          "folk-jb1895-020",
+          "folk-jb1895-015"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0
+      },
+      {
+        "id": "g-093",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-012",
+          "folk-jb1895-031",
+          "folk-jb1895-033"
+        ],
+        "top_ids": [
+          "folk-jb1895-031",
+          "folk-jb1895-006",
+          "folk-jb1895-037",
+          "folk-jb1895-033",
+          "folk-jb1895-041"
+        ],
+        "hit": 1,
+        "recall": 0.6666666666666666,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-094",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-029"
+        ],
+        "top_ids": [
+          "folk-jb1895-029",
+          "folk-jb1895-035",
+          "folk-jb1895-036",
+          "folk-jb1895-019",
+          "folk-jb1895-044"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-096",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-003"
+        ],
+        "top_ids": [
+          "rap-original-003",
+          "folk-jb1895-045",
+          "folk-jb1895-012",
+          "rap-original-018",
+          "rap-original-010"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-098",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-018"
+        ],
+        "top_ids": [
+          "rap-original-018",
+          "folk-jb1895-045",
+          "rap-original-007",
+          "folk-jb1895-008",
+          "folk-jb1895-041"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-099",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-006",
+          "rap-original-019",
+          "rap-original-020"
+        ],
+        "top_ids": [
+          "rap-original-019",
+          "rap-original-006",
+          "rap-original-002",
+          "rap-original-001",
+          "rap-original-016"
+        ],
+        "hit": 1,
+        "recall": 0.6666666666666666,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       }
     ]
   },
   "fixed_windows": {
     "collection": "week8_bge_m3_ed503ac0413708d6",
     "indexed_chunks": 158,
-    "hit_rate_at_5": 0.8888888888888888,
-    "recall_at_5": 0.8333333333333334,
-    "mrr_at_5": 0.7037037037037037,
+    "query_count": 21,
+    "hit_rate_at_5": 0.7619047619047619,
+    "recall_at_5": 0.6071428571428571,
+    "mrr_at_5": 0.615079365079365,
+    "mrr_at_10": 0.6402494331065759,
+    "by_group": {
+      "dialect_qa": {
+        "query_count": 9,
+        "hit_rate_at_5": 0.8888888888888888,
+        "recall_at_5": 0.8333333333333334,
+        "mrr_at_5": 0.7037037037037037,
+        "mrr_at_10": 0.7195767195767195
+      },
+      "retrieval": {
+        "query_count": 12,
+        "hit_rate_at_5": 0.6666666666666666,
+        "recall_at_5": 0.4375,
+        "mrr_at_5": 0.548611111111111,
+        "mrr_at_10": 0.5807539682539683
+      },
+      "retrieval/folk": {
+        "query_count": 7,
+        "hit_rate_at_5": 0.7142857142857143,
+        "recall_at_5": 0.41666666666666663,
+        "mrr_at_5": 0.6071428571428571,
+        "mrr_at_10": 0.6275510204081634
+      },
+      "retrieval/rap": {
+        "query_count": 5,
+        "hit_rate_at_5": 0.6,
+        "recall_at_5": 0.4666666666666667,
+        "mrr_at_5": 0.4666666666666667,
+        "mrr_at_10": 0.5152380952380953
+      }
+    },
     "queries": [
       {
         "id": "g-001",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-001",
           "folk-jb1895-005",
@@ -196,10 +535,13 @@
         ],
         "hit": 1,
         "recall": 0.5,
-        "reciprocal_rank": 0.3333333333333333
+        "reciprocal_rank": 0.3333333333333333,
+        "reciprocal_rank_at_10": 0.3333333333333333
       },
       {
         "id": "g-013",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-002",
           "folk-jb1895-011",
@@ -215,10 +557,139 @@
         ],
         "hit": 0,
         "recall": 0.0,
-        "reciprocal_rank": 0
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0.14285714285714285
+      },
+      {
+        "id": "g-014",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-024",
+          "folk-jb1895-029",
+          "folk-jb1895-030",
+          "folk-jb1895-041"
+        ],
+        "top_ids": [
+          "folk-jb1895-024",
+          "rap-original-021",
+          "rap-original-002",
+          "folk-jb1895-040",
+          "rap-original-009"
+        ],
+        "hit": 1,
+        "recall": 0.25,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-015",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-015",
+          "folk-jb1895-019",
+          "folk-jb1895-030"
+        ],
+        "top_ids": [
+          "folk-jb1895-015",
+          "folk-jb1895-030",
+          "folk-jb1895-006",
+          "folk-jb1895-042",
+          "folk-jb1895-036"
+        ],
+        "hit": 1,
+        "recall": 0.6666666666666666,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-016",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-002",
+          "folk-jb1895-009",
+          "folk-jb1895-030"
+        ],
+        "top_ids": [
+          "rap-original-021",
+          "folk-jb1895-036",
+          "folk-jb1895-006",
+          "rap-original-013",
+          "rap-original-002"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0
+      },
+      {
+        "id": "g-017",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-004",
+          "folk-jb1895-008",
+          "folk-jb1895-012"
+        ],
+        "top_ids": [
+          "rap-original-014",
+          "folk-jb1895-045",
+          "folk-jb1895-044",
+          "folk-jb1895-004",
+          "folk-jb1895-011"
+        ],
+        "hit": 1,
+        "recall": 0.3333333333333333,
+        "reciprocal_rank": 0.25,
+        "reciprocal_rank_at_10": 0.25
+      },
+      {
+        "id": "g-019",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-001",
+          "rap-original-003",
+          "rap-original-008",
+          "rap-original-011"
+        ],
+        "top_ids": [
+          "folk-jb1895-032",
+          "folk-jb1895-007",
+          "rap-original-020",
+          "folk-jb1895-022",
+          "folk-jb1895-037"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0.1
+      },
+      {
+        "id": "g-022",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-019"
+        ],
+        "top_ids": [
+          "rap-original-013",
+          "rap-original-021",
+          "rap-original-002",
+          "rap-original-007",
+          "folk-jb1895-004"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0.14285714285714285
       },
       {
         "id": "g-081",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-014",
           "folk-jb1895-025"
@@ -232,10 +703,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       },
       {
         "id": "g-083",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-004"
         ],
@@ -248,10 +722,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       },
       {
         "id": "g-084",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-020"
         ],
@@ -264,10 +741,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       },
       {
         "id": "g-085",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-005"
         ],
@@ -280,10 +760,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 0.5
+        "reciprocal_rank": 0.5,
+        "reciprocal_rank_at_10": 0.5
       },
       {
         "id": "g-087",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-012",
           "folk-jb1895-033"
@@ -297,10 +780,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       },
       {
         "id": "g-088",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-024"
         ],
@@ -313,10 +799,13 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 0.5
+        "reciprocal_rank": 0.5,
+        "reciprocal_rank_at_10": 0.5
       },
       {
         "id": "g-089",
+        "task": "dialect_qa",
+        "mode": null,
         "expected_ids": [
           "folk-jb1895-024"
         ],
@@ -329,7 +818,128 @@
         ],
         "hit": 1,
         "recall": 1.0,
-        "reciprocal_rank": 1.0
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-092",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-022",
+          "folk-jb1895-023",
+          "folk-jb1895-031"
+        ],
+        "top_ids": [
+          "rap-original-013",
+          "rap-original-011",
+          "rap-original-014",
+          "rap-original-008",
+          "rap-original-017"
+        ],
+        "hit": 0,
+        "recall": 0.0,
+        "reciprocal_rank": 0,
+        "reciprocal_rank_at_10": 0.14285714285714285
+      },
+      {
+        "id": "g-093",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-012",
+          "folk-jb1895-031",
+          "folk-jb1895-033"
+        ],
+        "top_ids": [
+          "folk-jb1895-033",
+          "folk-jb1895-031",
+          "folk-jb1895-037",
+          "folk-jb1895-025",
+          "folk-jb1895-023"
+        ],
+        "hit": 1,
+        "recall": 0.6666666666666666,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-094",
+        "task": "retrieval",
+        "mode": "folk",
+        "expected_ids": [
+          "folk-jb1895-029"
+        ],
+        "top_ids": [
+          "folk-jb1895-029",
+          "folk-jb1895-035",
+          "folk-jb1895-036",
+          "folk-jb1895-024",
+          "rap-original-020"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-096",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-003"
+        ],
+        "top_ids": [
+          "folk-jb1895-045",
+          "folk-jb1895-037",
+          "rap-original-003",
+          "folk-jb1895-012",
+          "rap-original-018"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 0.3333333333333333,
+        "reciprocal_rank_at_10": 0.3333333333333333
+      },
+      {
+        "id": "g-098",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-018"
+        ],
+        "top_ids": [
+          "rap-original-018",
+          "rap-original-013",
+          "folk-jb1895-045",
+          "folk-jb1895-008",
+          "folk-jb1895-041"
+        ],
+        "hit": 1,
+        "recall": 1.0,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
+      },
+      {
+        "id": "g-099",
+        "task": "retrieval",
+        "mode": "rap",
+        "expected_ids": [
+          "rap-original-006",
+          "rap-original-019",
+          "rap-original-020"
+        ],
+        "top_ids": [
+          "rap-original-019",
+          "rap-original-013",
+          "rap-original-001",
+          "rap-original-002",
+          "rap-original-016"
+        ],
+        "hit": 1,
+        "recall": 0.3333333333333333,
+        "reciprocal_rank": 1.0,
+        "reciprocal_rank_at_10": 1.0
       }
     ]
   }

@@ -43,21 +43,42 @@ def score(retriever, examples, vectors, count):
         matching_ranks = [
             rank for rank, chunk_id in enumerate(top_ids, 1) if chunk_id in expected
         ]
+        ranks_10 = [
+            rank for rank, chunk_id in enumerate(parents[:10], 1) if chunk_id in expected
+        ]
         rows.append({
             "id": example["id"],
+            "task": example["task"],
+            "mode": example["mode"],
             "expected_ids": sorted(expected),
             "top_ids": top_ids,
             "hit": int(bool(matching_ranks)),
             "recall": len(matching_ranks) / len(expected),
             "reciprocal_rank": 1 / matching_ranks[0] if matching_ranks else 0,
+            "reciprocal_rank_at_10": 1 / ranks_10[0] if ranks_10 else 0,
         })
+    groups = {}
+    for row in rows:
+        groups.setdefault(row["task"], []).append(row)
+        if row["task"] == "retrieval":
+            groups.setdefault(f"retrieval/{row['mode']}", []).append(row)
     return {
         "collection": retriever.collection,
         "indexed_chunks": count,
+        **summarize(rows),
+        "by_group": {name: summarize(group) for name, group in sorted(groups.items())},
+        "queries": rows,
+    }
+
+
+def summarize(rows):
+    """Average the per-query scores; the criteria's primary metric is recall_at_5."""
+    return {
+        "query_count": len(rows),
         "hit_rate_at_5": sum(row["hit"] for row in rows) / len(rows),
         "recall_at_5": sum(row["recall"] for row in rows) / len(rows),
         "mrr_at_5": sum(row["reciprocal_rank"] for row in rows) / len(rows),
-        "queries": rows,
+        "mrr_at_10": sum(row["reciprocal_rank_at_10"] for row in rows) / len(rows),
     }
 
 

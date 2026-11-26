@@ -1,0 +1,161 @@
+{
+  "settings": {
+    "models": {
+      "qwen3-4b": {
+        "id": "Qwen/Qwen3-4B-Instruct-2507",
+        "revision": "cdbee75f17c01a7cc42f958dc650907174af0554"
+      },
+      "gemma3-4b": {
+        "id": "google/gemma-3-4b-it",
+        "revision": "093f9f388b31de276ce2de164bdc2081324b9767"
+      }
+    },
+    "gpu": "Tesla T4",
+    "torch": "2.14.1+cu130",
+    "transformers": "5.22.1",
+    "date": "2026-11-26T09:25:54+00:00",
+    "split": "dev",
+    "items": 56,
+    "limit_per_task": null,
+    "dry_run": false,
+    "decoding": "greedy (do_sample=False)",
+    "dtype": "bfloat16",
+    "max_new_tokens": {
+      "generation": 200,
+      "dialect_qa": 300
+    },
+    "context_k": 3,
+    "golden_sha256": "a12d43d012442fa73893e04dfc71723f6be4b483e505d9ab17d486adf4fa4c86",
+    "corpus_sha256": "4325b1ac847af6274e8a6ff44ff37335e0a26cd2a1333c85a5533f9049272ce5"
+  },
+  "results": {
+    "qwen3-4b__no_rag": {
+      "dialect_qa": {
+        "items": 14,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 7.4407,
+        "mean_token_f1_proxy": 0.0894,
+        "grounding_hit_rate": null,
+        "mean_answer_words": 46.6429
+      },
+      "generation/folk": {
+        "items": 21,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 5.5576,
+        "structural_pass_rate": 0.0,
+        "line_count_ok_rate": 1.0,
+        "mean_syllable_accuracy": 0.0595,
+        "rhyme_match_rate": 0.0476,
+        "regional_ok_rate": 0.0,
+        "mean_regional_terms": 0.0
+      },
+      "generation/rap": {
+        "items": 21,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 5.9786,
+        "structural_pass_rate": 0.0,
+        "line_count_ok_rate": 1.0,
+        "mean_syllable_accuracy": 0.5952,
+        "rhyme_match_rate": 0.0476,
+        "regional_ok_rate": 0.0476,
+        "mean_regional_terms": 0.0476
+      }
+    },
+    "qwen3-4b__rag": {
+      "dialect_qa": {
+        "items": 14,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 9.7379,
+        "mean_token_f1_proxy": 0.0877,
+        "grounding_hit_rate": 0.6667,
+        "mean_answer_words": 58.2143
+      },
+      "generation/folk": {
+        "items": 21,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 6.5981,
+        "structural_pass_rate": 0.0,
+        "line_count_ok_rate": 0.9048,
+        "mean_syllable_accuracy": 0.1726,
+        "rhyme_match_rate": 0.0,
+        "regional_ok_rate": 0.0476,
+        "mean_regional_terms": 0.381
+      },
+      "generation/rap": {
+        "items": 21,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 7.1071,
+        "structural_pass_rate": 0.0,
+        "line_count_ok_rate": 1.0,
+        "mean_syllable_accuracy": 0.6429,
+        "rhyme_match_rate": 0.0,
+        "regional_ok_rate": 0.2381,
+        "mean_regional_terms": 0.5238
+      }
+    },
+    "gemma3-4b__no_rag": {
+      "dialect_qa": {
+        "items": 14,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 6.1893,
+        "mean_token_f1_proxy": 0.0918,
+        "grounding_hit_rate": null,
+        "mean_answer_words": 39.9286
+      },
+      "generation/folk": {
+        "items": 21,
+        "hit_token_limit": 1,
+        "mean_generation_seconds": 6.5514,
+        "structural_pass_rate": 0.0,
+        "line_count_ok_rate": 0.9048,
+        "mean_syllable_accuracy": 0.1305,
+        "rhyme_match_rate": 0.0,
+        "regional_ok_rate": 0.0,
+        "mean_regional_terms": 0.0476
+      },
+      "generation/rap": {
+        "items": 21,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 6.3167,
+        "structural_pass_rate": 0.0,
+        "line_count_ok_rate": 1.0,
+        "mean_syllable_accuracy": 0.631,
+        "rhyme_match_rate": 0.0476,
+        "regional_ok_rate": 0.0476,
+        "mean_regional_terms": 0.0476
+      }
+    },
+    "gemma3-4b__rag": {
+      "dialect_qa": {
+        "items": 14,
+        "hit_token_limit": 2,
+        "mean_generation_seconds": 10.9643,
+        "mean_token_f1_proxy": 0.0776,
+        "grounding_hit_rate": 0.6667,
+        "mean_answer_words": 62.2143
+      },
+      "generation/folk": {
+        "items": 21,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 6.8433,
+        "structural_pass_rate": 0.0,
+        "line_count_ok_rate": 0.9524,
+        "mean_syllable_accuracy": 0.2202,
+        "rhyme_match_rate": 0.0476,
+        "regional_ok_rate": 0.0,
+        "mean_regional_terms": 0.0952
+      },
+      "generation/rap": {
+        "items": 21,
+        "hit_token_limit": 0,
+        "mean_generation_seconds": 7.1814,
+        "structural_pass_rate": 0.0,
+        "line_count_ok_rate": 1.0,
+        "mean_syllable_accuracy": 0.7619,
+        "rhyme_match_rate": 0.0,
+        "regional_ok_rate": 0.1429,
+        "mean_regional_terms": 0.1429
+      }
+    }
+  }
+}
