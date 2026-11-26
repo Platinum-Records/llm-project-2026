@@ -1,7 +1,7 @@
 # Evaluation Criteria — Golden Dataset v1
 
 **Owner:** Evaluation & Documentation Lead
-**Status:** Week 8 evaluation rules documented in PR #8. Team approval is pending.
+**Status:** Approved. PR #8 was reviewed and merged by the Data Lead (Taisia) on 2026-11-20 and marked final by the Evaluation Lead (Luiza) on 2026-11-26.
 **Applies to:** `data/eval/golden_v1.jsonl`
 
 This document defines how every system configuration (A: commercial baseline, B: untuned SLM, C: fine-tuned SLM) and every experiment (E2–E7) is scored on the Golden Dataset, so that results are comparable across weeks and team members.
@@ -75,6 +75,7 @@ The query is `prompt`; relevant results are `expected_chunks`, defined **before*
 | MRR@10 | 1 / rank of the first relevant result in the top 10 (0 if none) |
 | Precision@5 | Share of the top 5 results that are in `expected_chunks` (kept for comparability with E1) |
 
+- Only retrieval items with `status = validated` are scored. All retrieval labels were checked against the current corpus and marked `validated` on 2026-11-26, except g-021, which stays `draft` until `rap-original-021` is approved.
 - Mode filtering (E3) uses the item's `mode`.
 - Exclude items with empty `expected_chunks` from scoring. The current exclusions are g-002 (no directly relevant folk excerpt about homesickness) and g-021 (its reference, rap-original-021, is pending approval and must be included in the retrieval index before scoring). Excluded items receive no score.
 - If chunk IDs change (e.g. stanza-based chunking in E2), `expected_chunks` must be remapped before comparing runs; runs on different chunkings are compared on Recall@5 and MRR@10 only.
@@ -100,7 +101,7 @@ Regional-term counting and dialect correctness use one shared list: the terms of
 
 ## 7. Experiment protocol
 
-The dataset validator checks data structure and reference IDs. Model runs and team approval are separate.
+The dataset validator checks data structure and reference IDs; it does not run models.
 
 | Experiment | Week | Split | Tasks / metrics used |
 |---|---|---|---|

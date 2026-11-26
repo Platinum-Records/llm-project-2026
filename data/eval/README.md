@@ -2,7 +2,7 @@
 
 **File:** `golden_v1.jsonl` (100 examples, one JSON object per line).
 **Owner:** Evaluation & Documentation Lead
-**Status:** Week 8 v1 deliverable for PR #8 review, with fixed dev and locked test splits. Team sign-off is pending.
+**Status:** Frozen Week 8 v1 with fixed dev and locked test splits. PR #8 was reviewed and merged by the Data Lead (Taisia) on 2026-11-20 and marked final by the Evaluation Lead (Luiza) on 2026-11-26.
 **Scoring rules:** see [`docs/evaluation-criteria.md`](../../docs/evaluation-criteria.md).
 
 > The `test` split is locked: use it only for the final system comparisons (E5, Week 11; final evaluation, Week 13). Never use golden examples for fine-tuning or for building the retrieval corpus.
@@ -57,7 +57,7 @@ Based on the Week 7 corpus (heuristic count per line): folk median 8 (p10–p90:
 
 ## Evaluation rules
 
-PR #8 documents the following rules. Team approval is pending.
+These rules are approved (see `docs/evaluation-criteria.md`).
 
 - A generation item passes the structural check only if it meets all four conditions together. The output has the required line count, syllable accuracy is at least 0.75 (at least 3 of 4 lines within range), the rhyme scheme matches, and the regional-term minimum is met.
 - Recall@5 is the primary retrieval metric. Average the scores per eligible item, use the same eligible set for all systems in a comparison, and report by split and mode with the number of items scored and the IDs excluded. Items with empty `expected_chunks` are excluded. The current exclusions are g-002 and g-021, as described under Known gaps. Excluded items receive no score.
@@ -73,14 +73,14 @@ The default command selects `data/eval/golden_v1.jsonl`. To specify both inputs 
 
     python eval/validate_golden.py data/eval/golden_v1.jsonl data/processed/chunks.jsonl
 
-The validator checks JSON, schema, generation constraints, chunk ID existence, and exposed items' splits. The warning for g-002 is expected. Passing these checks establishes technical validity only. Evaluation runs and team approval are separate.
+The validator checks JSON, schema, generation constraints, chunk ID existence, and exposed items' splits. The warning for g-002 is expected. Passing these checks establishes technical validity only; it does not run any model.
 
 ## Dialect validation
 
 | Batch | Items | Status |
 |---|---|---|
 | Week 7 | g-001, g-005 – g-013 | **Validated** on 2026-11-11 by the Evaluation Lead (Luiza) and the Data Lead (Taisia), native-speaker agreement. |
-| Week 8 | g-081 – g-090 | All 10 examples are marked `validated` in the JSONL. All 10 terms occur in the folk corpus. |
+| Week 8 | g-081 – g-090 | **Validated** with the Data Lead (PR #8, merged 2026-11-20). All 10 terms occur in the folk corpus. |
 
 The answers for g-005 – g-012 are marked `validated`, but their `expected_chunks` lists are empty because no corpus excerpts are eligible for grounding. Several forms appear in `rap-original-021`, a provisional draft excluded as evidence for `dialect_qa`. These eight answers remain eligible for correctness scoring and are excluded from grounding scores.
 
@@ -102,8 +102,14 @@ Week 8 answers from the JSONL:
 ## Review and maintenance
 
 - The Romanian prompts have been reviewed and the current chunk IDs checked. If chunk IDs change in a later corpus version, remap the references. Link g-005 through g-012 when eligible dialect material is available.
-- Record the Data Lead confirmation for g-081 through g-090 and the team's decision on the evaluation rules in PR #8. The ten JSONL status values record the current answers and team sign-off remains pending.
 - Keep the test split locked. After freezing, change test items only to fix clear errors and record every change.
+
+## Change log
+
+| Date | Change | Items |
+|---|---|---|
+| 2026-11-20 | Golden Dataset v1 frozen (PR #8, merged by the Data Lead) | all |
+| 2026-11-26 | `status` set to `validated` for the reviewed generation prompts and retrieval labels, so they are included in scored runs. Content unchanged. g-021 stays `draft` until `rap-original-021` is approved. | 60 generation, 19 retrieval |
 
 ## Known gaps
 
