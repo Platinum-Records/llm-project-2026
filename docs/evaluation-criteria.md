@@ -114,5 +114,5 @@ The dataset validator checks data structure and reference IDs; it does not run m
 
 Rules for every run:
 - Use the same generation settings for all systems in a comparison within each task and record them (decoding, temperature, effective output token limit, model revision, date, GPU). For `dialect_qa` comparisons, cap each response at 300 newly generated tokens (`max_new_tokens=300` or the equivalent setting) and record the effective cap for each system. For `generation`, set and record a separate common cap before running the comparison. Retrieval scored on returned chunk IDs uses no generation token cap.
-- Save per-item outputs and scores, not only averages, under `eval/results/<experiment>/<system>.jsonl`, plus a `summary.json`.
+- Save per-item outputs and scores, not only averages, under `eval/week<N>/<experiment>/<system>.jsonl`, plus a `summary.json`.
 - Report results separately per task and mode, and always say which split was used.

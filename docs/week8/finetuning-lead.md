@@ -1,7 +1,7 @@
 # Week 8 — Fine-Tuning Lead: Model Comparison
 
 **Task (timeline, Week 8):** compare the selected SLM candidates on the same prompts, with and without retrieved context, and record their performance and limitations.
-**Status:** Complete. Full run on the dev split on 2026-11-26 (Colab, Tesla T4); results in `eval/results/week8_model_comparison/`.
+**Status:** Complete. Full run on the dev split on 2026-11-26 (Colab, Tesla T4); results in `eval/week8/model_comparison/`.
 **Prepared by:** Evaluation & Documentation Lead (Luiza), on behalf of the Fine-Tuning Lead, on 2026-11-26.
 
 ## Setup
@@ -21,7 +21,7 @@ Retrieval runs once per item before the models are loaded, so both models see ex
 
 ## How to run
 
-Open `notebooks/week8_model_comparison.ipynb` in Google Colab with a GPU runtime and run the cells in order: smoke test (2 items per task), full run (about 45–60 minutes), then download the results zip and commit it to `eval/results/week8_model_comparison/`.
+Open `notebooks/week8_model_comparison.ipynb` in Google Colab with a GPU runtime and run the cells in order: smoke test (2 items per task), full run (about 45–60 minutes), then download the results zip and commit it to `eval/week8/model_comparison/`.
 
 Without a GPU, the pipeline can be checked with stand-in models:
 

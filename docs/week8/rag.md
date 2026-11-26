@@ -43,11 +43,11 @@ Gold labels refer to original corpus IDs. Window results are mapped to their ori
 
 Both variants found a relevant fragment for eight of the nine labeled development queries. Fixed windows found more expected fragments in the top five and ranked the first relevant fragment higher on average. All nine queries are dialect QA, so these results describe dialect retrieval on the provisional corpus. Keep existing fragments as the Week 8 baseline pending review with Data Lead and evaluation on additional development queries.
 
-Per-query rankings and corpus fingerprints are in [e2_chunking.json](../eval/week8/e2_chunking.json).
+Per-query rankings and corpus fingerprints are in [e2_chunking.json](../../eval/week8/e2_chunking.json).
 
 ## E2 rerun on the retrieval examples (2026-11-26)
 
-The first run above used only 9 dialect questions: the Golden Dataset retrieval examples were still marked `draft`, and the script scores only `validated` items. After the retrieval labels were validated (all except g-021, which waits for `rap-original-021` to be approved), E2 was rerun on **21 dev queries**: 9 dialect questions and 12 retrieval queries (7 folk, 5 rap). g-002 is excluded because it has no expected chunks. Same model revision and corpus; results in [e2_chunking.json](../eval/week8/e2_chunking.json), including MRR@10 and a `by_group` breakdown.
+The first run above used only 9 dialect questions: the Golden Dataset retrieval examples were still marked `draft`, and the script scores only `validated` items. After the retrieval labels were validated (all except g-021, which waits for `rap-original-021` to be approved), E2 was rerun on **21 dev queries**: 9 dialect questions and 12 retrieval queries (7 folk, 5 rap). g-002 is excluded because it has no expected chunks. Same model revision and corpus; results in [e2_chunking.json](../../eval/week8/e2_chunking.json), including MRR@10 and a `by_group` breakdown.
 
 | Group | Queries | Variant | Hit rate@5 | **Recall@5** | MRR@5 | MRR@10 |
 | --- | ---: | --- | ---: | ---: | ---: | ---: |
